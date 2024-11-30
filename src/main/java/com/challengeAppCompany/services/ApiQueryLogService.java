@@ -18,6 +18,7 @@ public class ApiQueryLogService {
 		ApiQueryLog log = new ApiQueryLog();
 		log.setQueryTime(LocalDateTime.now());
 		log.setCep(cep);
+		log.setResponse(response);
 		log.setStatus(status);
 		
 		repository.save(log);
