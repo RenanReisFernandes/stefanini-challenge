@@ -23,7 +23,7 @@ public class CepService {
 	private static final String EXTERNAL_API_URL = "https://viacep.com.br/ws/{cep}/json";
 	
 	public Map<String, Object> getAddressByCep(String cep){
-		log.info("Iniciando consulta para o cep: {}", cep);
+		log.info("Iniciando consulta para o CEP: {}", cep);
 		
 		try {
 			//CALLING EXTERNAL API
@@ -37,10 +37,11 @@ public class CepService {
 			
 			return responseBody;
 			
-		}catch (HttpClientErrorException.NotFound e) {
+		}catch (HttpClientErrorException.NotFound ex) {
 			log.warn("Nenhum endereço encontrado para o CEP: {}", cep);
 			logService.saveLog(cep, "Nenhum endereço encontrado", "NOT_FOUND");
-			throw e;
+			throw ex;
+			
 		}catch(Exception e) {
 			log.error("Erro ao consultar a API externa: {}", e.getMessage());
 			logService.saveLog(cep, e.getMessage(), "ERROR");
