@@ -36,10 +36,14 @@ public class CepService {
 			logService.saveLog(cep, responseBody.toString(), "SUCCESS");
 			
 			return responseBody;
+			
 		}catch (HttpClientErrorException.NotFound e) {
 			log.warn("Nenhum endereço encontrado para o CEP: {}", cep);
+			logService.saveLog(cep, "Nenhum endereço encontrado", "NOT_FOUND");
+			throw e;
+		}catch(Exception e) {
+			log.error("Erro ao consultar a API externa: {}", e.getMessage());
 			logService.saveLog(cep, e.getMessage(), "ERROR");
-			
 			throw e;
 		}
 		
