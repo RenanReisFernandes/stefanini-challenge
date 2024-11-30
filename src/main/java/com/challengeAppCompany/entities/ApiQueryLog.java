@@ -33,7 +33,7 @@ public class ApiQueryLog {
 	@Column(name= "cep", nullable = false)
 	private String cep;
 	
-	@Column(name= "response", nullable = false)
+	@Column(name= "response", columnDefinition = "TEXT")
 	private String response;
 	
 	@Column(name = "status", nullable = false)
