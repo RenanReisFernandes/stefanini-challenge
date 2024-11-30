@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class CepService {
+
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -30,13 +31,55 @@ public class CepService {
 			ResponseEntity<Map> responseEntity = restTemplate.getForEntity(EXTERNAL_API_URL, Map.class, cep);
 			
 			Map<String, Object> responseBody = responseEntity.getBody();
+			
+			
+			//CHECK IF THE RESPONSE CONTAINS ERRORS
+			if(responseBody != null && responseBody.containsKey("erro")) {
+				String errorMessage = "CEP inválido ou não encontrato: "+ cep;
+				log.warn(errorMessage);
+				logService.saveLog(cep, errorMessage, "NOT_FOUND");
+				
+				throw new IllegalArgumentException(errorMessage);
+			}
+			
+			log.info("Consulta concluída com sucesso: {}", responseBody);
+			
+			//SAVING THE LOG IN DATABASE
+			logService.saveLog(cep, responseEntity.toString(), "SUCCESS");
+			
+			return responseBody;
+		}catch (HttpClientErrorException.NotFound e) {
+				String errorMessage = "Nenhum endereço encontrado para o CEP: "+ cep;
+				log.warn(errorMessage);
+				logService.saveLog(cep, errorMessage, "NOT_FOUND");
+				throw e;
+			
+			}catch (Exception e) {
+				String errorMessage = "Falha ao consultar a API externa: " + e.getMessage();
+				log.error(errorMessage);
+				logService.saveLog(cep, errorMessage, "ERROR");
+				throw e;
+			}
+			
+			
+	}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			/**
 			log.info("Consulta concluída com sucesso: {}", responseBody);
 			
 			//SAVING THE LOG IN THE DATABASE
 			logService.saveLog(cep, responseBody.toString(), "SUCCESS");
 			
 			return responseBody;
-			
+				
 		}catch (HttpClientErrorException.NotFound ex) {
 			log.warn("Nenhum endereço encontrado para o CEP: {}", cep);
 			logService.saveLog(cep, "Nenhum endereço encontrado", "NOT_FOUND");
@@ -49,4 +92,7 @@ public class CepService {
 		}
 		
 	}
+	
+	**/
+
 }
