@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.challengeAppCompany.entities.ApiQueryLog;
 import com.challengeAppCompany.repositories.ApiQueryLogRepository;
 
+
 @Service
 public class ApiQueryLogService {
 	
@@ -15,6 +16,7 @@ public class ApiQueryLogService {
 	private ApiQueryLogRepository repository;
 	
 	public void saveLog(String cep, String response, String status) {
+	
 		ApiQueryLog log = new ApiQueryLog();
 		log.setQueryTime(LocalDateTime.now());
 		log.setCep(cep);
