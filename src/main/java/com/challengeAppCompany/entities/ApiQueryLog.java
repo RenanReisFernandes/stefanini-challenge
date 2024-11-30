@@ -26,16 +26,16 @@ public class ApiQueryLog {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name= "query_time", nullable = false)
+
+	@Column(name = "query_time", nullable = false)
 	private LocalDateTime queryTime;
-	
-	@Column(name= "cep", nullable = false)
+
+	@Column(name = "cep", nullable = false)
 	private String cep;
-	
-	@Column(name= "response", columnDefinition = "TEXT")
+
+	@Column(name = "response", columnDefinition = "TEXT")
 	private String response;
-	
+
 	@Column(name = "status", nullable = false)
 	private String status;
 
