@@ -1,0 +1,100 @@
+{
+  "uuid": "f304c205-9d8b-4d41-b4e0-0e2af6333f2b",
+  "lastMigration": 32,
+  "name": "Data",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "7e7ef064-e4a9-464f-9ceb-3720eb03b00e",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "ws/:cep/json",
+      "responses": [
+        {
+          "uuid": "36926a52-6e80-4db6-ab6b-f88221ec261b",
+          "body": "[\r\n    {\r\n        \"cep\": \"01001-000\",\r\n        \"logradouro\": \"Praça da Sé\",\r\n        \"complemento\": \"lado ímpar\",\r\n        \"unidade\": \"\",\r\n        \"bairro\": \"Sé\",\r\n        \"localidade\": \"São Paulo\",\r\n        \"uf\": \"SP\",\r\n        \"estado\": \"São Paulo\",\r\n        \"regiao\": \"Sudeste\",\r\n        \"ibge\": \"3550308\",\r\n        \"gia\": \"1004\",\r\n        \"ddd\": \"11\",\r\n        \"siafi\": \"7107\"\r\n    },\r\n    {\r\n        \"cep\": \"22630-010\",\r\n        \"logradouro\": \"Avenida Lúcio Costa\",\r\n        \"complemento\": \"de 3102 a 3604 - lado par\",\r\n        \"unidade\": \"\",\r\n        \"bairro\": \"Barra da Tijuca\",\r\n        \"localidade\": \"Rio de Janeiro\",\r\n        \"uf\": \"RJ\",\r\n        \"estado\": \"Rio de Janeiro\",\r\n        \"regiao\": \"Sudeste\",\r\n        \"ibge\": \"3304557\",\r\n        \"gia\": \"\",\r\n        \"ddd\": \"21\",\r\n        \"siafi\": \"6001\"\r\n    },\r\n    {\r\n        \"cep\": \"13484-015\",\r\n        \"logradouro\": \"Rua do Rosário\",\r\n        \"complemento\": \"\",\r\n        \"unidade\": \"\",\r\n        \"bairro\": \"Vila da Glória\",\r\n        \"localidade\": \"Limeira\",\r\n        \"uf\": \"SP\",\r\n        \"estado\": \"São Paulo\",\r\n        \"regiao\": \"Sudeste\",\r\n        \"ibge\": \"3526902\",\r\n        \"gia\": \"4170\",\r\n        \"ddd\": \"19\",\r\n        \"siafi\": \"6639\"\r\n    }\r\n]\r\n\r\n",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "7e7ef064-e4a9-464f-9ceb-3720eb03b00e"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "da051686-81ad-4b04-bc66-bf1ffe88743a",
+      "id": "0hog",
+      "name": "data",
+      "documentation": "",
+      "value": "{{#each data}}\r\n{{#if (eq cep request.params.cep)}}\r\n{\r\n    \"cep\": \"{{cep}}\",\r\n    \"logradouro\": \"{{logradouro}}\",\r\n    \"complemento\": \"{{complemento}}\",\r\n    \"unidade\": \"{{unidade}}\",\r\n    \"bairro\": \"{{bairro}}\",\r\n    \"localidade\": \"{{localidade}}\",\r\n    \"uf\": \"{{uf}}\",\r\n    \"estado\": \"{{estado}}\",\r\n    \"regiao\": \"{{regiao}}\",\r\n    \"ibge\": \"{{ibge}}\",\r\n    \"gia\": \"{{gia}}\",\r\n    \"ddd\": \"{{ddd}}\",\r\n    \"siafi\": \"{{siafi}}\"\r\n}\r\n{{/if}}\r\n{{/each}}\r\n"
+    }
+  ],
+  "callbacks": []
+}
