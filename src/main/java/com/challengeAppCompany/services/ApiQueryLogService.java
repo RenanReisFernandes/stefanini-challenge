@@ -2,6 +2,8 @@ package com.challengeAppCompany.services;
 
 import java.time.LocalDateTime;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,8 @@ public class ApiQueryLogService {
 
 	@Autowired
 	private ApiQueryLogRepository repository;
-
+	
+	@Transactional 
 	public void saveLog(String cep, String response, String status) {
 
 		ApiQueryLog log = new ApiQueryLog();
@@ -23,6 +26,7 @@ public class ApiQueryLogService {
 		log.setStatus(status);
 
 		repository.save(log);
+		System.out.println("Log salvo: " + log);
 	}
 
 }
