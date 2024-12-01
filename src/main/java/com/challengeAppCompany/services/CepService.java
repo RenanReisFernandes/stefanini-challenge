@@ -20,7 +20,7 @@ public class CepService {
 	@Autowired
 	private ApiQueryLogService logService;
 
-	private static final String EXTERNAL_API_URL = "http://localhost:3001/ws/:cep/json";
+	private static final String EXTERNAL_API_URL = "https://viacep.com.br/ws/{cep}/json/";
 
 	public Map<String, Object> getAddressByCep(String cep) {
 		log.info("Iniciando consulta para o CEP: {}", cep);
