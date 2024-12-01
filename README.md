@@ -14,7 +14,6 @@
  </p><br>
  <p>
  
- 
 
 ### 🔨 FERRAMENTAS UTILIZADAS
 
@@ -90,6 +89,3 @@ OBS: Os dados de conexão como: nome do banco de dados, login, senha e configura
 # ATENÇÃO !!!!!!
 Se houver alguma inconsistência na aplicação, clone a aplicação da branch "teste", esta versão usa o banco de dados H2 para persistência de dados e busca os dados da API ViaCep online.
 ```
-
-
-
